@@ -81,8 +81,7 @@ const chatHTML = `<main class="flex flex-column">
 </main>`;
 
 // Helper to safely escape HTML
-const escape = str => str.replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const escape = str => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 // Add a new user to the list
 const addUser = user => {
