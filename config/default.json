@@ -30,18 +30,25 @@
     "oauth": {
       "redirect": "/",
       "google": {
-        "key": "<google oauth key>",
-        "secret": "<google oauth secret>",
+        "key": "579270517943-01js9d9b7p865lro9icn2c2d72f3tj6v.apps.googleusercontent.com",
+        "secret": "bIwRMYLLXvespoEbgLhGWw2-",
         "scope": [
           "email",
           "profile",
           "openid"
-        ]
+        ],
+        "nonce": true
       },
       "facebook": {
         "key": "<facebook oauth key>",
         "secret": "<facebook oauth secret>"
       }
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "feathers-jwt",
+      "httpOnly": false,
+      "secure": false
     }
   },
   "mongodb": "mongodb://localhost:27017/feathers_chat_tutorial"
