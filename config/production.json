@@ -1,5 +1,5 @@
 {
-  "host": "chat-test-1234.herokuapp.com/",
+  "host": "chat-test-1234.herokuapp.com",
   "port": "PORT",
   "mongodb": "mongodb+srv://dbUser:aIRps7TplSsGFCiS@cluster0.gb1ux.mongodb.net/chat?retryWrites=true&w=majority"
 }
