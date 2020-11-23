@@ -81,18 +81,23 @@ const chatHTML = `<main class="flex flex-column">
 </main>`;
 
 // Helper to safely escape HTML
-const escape = str => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const escape = str => {
+  try {
+  str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  } catch {
+    console.log("str",str)
+  }
+};
 
 // Add a new user to the list
 const addUser = user => {
   const userList = document.querySelector('.user-list');
-
   if(userList) {
     // Add the user to the list
     userList.innerHTML += `<li>
       <a class="block relative" href="#">
         <img src="${user.avatar}" alt="" class="avatar">
-        <span class="absolute username">${escape(user.name || user.email)}</span>
+        <span class="absolute username">${this.escape(user.email)}</span>
       </a>
     </li>`;
 
@@ -111,13 +116,15 @@ const addMessage = message => {
   // Escape HTML to prevent XSS attacks
   const text = escape(message.text);
 
+  console.log("in message",message)
+
   if(chat) {
     chat.innerHTML += `<div class="message flex flex-row">
       <img src="${user.avatar}" alt="${user.name || user.email}" class="avatar">
       <div class="message-wrapper">
         <p class="message-header">
-          <span class="username font-600">${escape(user.name || user.email)}</span>
-          <span class="sent-date font-300">${moment(message.createdAt).format('MMM Do, hh:mm:ss')}</span>
+          <span class="username font-600">${this.escape(user.name || user.email)}</span>
+          <span class="sent-date font-300">${this.moment(message.createdAt).format('MMM Do, hh:mm:ss')}</span>
         </p>
         <p class="message-content font-300">${text}</p>
       </div>
@@ -156,7 +163,7 @@ const showChat = async () => {
 
   // Find all users
   const users = await client.service('users').find();
-
+  console.log(users);
   // Add each user to the list
   users.data.forEach(addUser);
 };
