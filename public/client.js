@@ -82,11 +82,7 @@ const chatHTML = `<main class="flex flex-column">
 
 // Helper to safely escape HTML
 const escape = str => {
-  try {
-  str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  } catch {
-    console.log("str",str)
-  }
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 };
 
 // Add a new user to the list
@@ -116,15 +112,13 @@ const addMessage = message => {
   // Escape HTML to prevent XSS attacks
   const text = escape(message.text);
 
-  console.log("in message",message)
-
   if(chat) {
     chat.innerHTML += `<div class="message flex flex-row">
       <img src="${user.avatar}" alt="${user.name || user.email}" class="avatar">
       <div class="message-wrapper">
         <p class="message-header">
-          <span class="username font-600">${this.escape(user.name || user.email)}</span>
-          <span class="sent-date font-300">${this.moment(message.createdAt).format('MMM Do, hh:mm:ss')}</span>
+          <span class="username font-600">${escape(user.name || user.email)}</span>
+          <span class="sent-date font-300">${moment(message.createdAt).format('MMM Do, hh:mm:ss')}</span>
         </p>
         <p class="message-content font-300">${text}</p>
       </div>
