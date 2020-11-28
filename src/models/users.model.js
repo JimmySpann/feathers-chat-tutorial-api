@@ -9,13 +9,14 @@ module.exports = function (app) {
 
     email: { type: String, unique: true, lowercase: true },
     password: { type: String },
-
+    avatar: { type: String },
+    channels: [{type: String}],
+    friends: [{type: String}],
+    isOnline: {type: Boolean},
 
     googleId: { type: String },
-
     facebookId: { type: String },
 
-    avatar: { type: String },
 
   }, {
     timestamps: true
