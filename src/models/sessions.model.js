@@ -5,8 +5,10 @@ module.exports = function (app) {
   const schema = new Schema({
     status: { type: String, required: true },
     users: [{
-      //id,
-      //status
+      id: {type: String},
+      status: {type: String},
+      score: {type: Number},
+      isAlive: {type: Boolean},
     }]
 
   }, {
